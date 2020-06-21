@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/mnModeSwitch"
+        android:title="Mode Terang/Gelap"
+        android:onClick="switchMode"
+        />
+    <item
+        android:id="@+id/mnAbout"
+        android:onClick="showAbout"
+        android:title="Tentang"
+        />
+</menu>
