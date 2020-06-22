@@ -25,7 +25,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.btnStartIntentService -> {
-
+                val mStartIntentService = Intent(this@MainActivity, MyIntentService::class.java)
+                mStartIntentService.putExtra(MyIntentService.EXTRA_DURATION, 5000L)
+                startService(mStartIntentService)
             }
 
             R.id.btnStartBoundService -> {
