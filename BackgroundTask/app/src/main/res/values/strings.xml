@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Background Task</string>
+    <string name="status">Status:</string>
+    <string name="status_pre">onPreExecute() sedang berjalan!</string>
+    <string name="status_post">onPostExecute() sedang berjalan!</string>
+    <string name="desc">Description</string>
+</resources>
