@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Broadcast Receiver</string>
+    <string name="app_label">Aplikasi penerima broadcast!</string>
+    <string name="check_sms_permission">Cek izin aplikasi</string>
+    <string name="download_something">Download sesuatu</string>
+    <string name="incoming_messages">Pesan baru!</string>
+    <string name="this_play">Main yuk, bete nih... Skuyy</string>
+    <string name="coming_from">Dari</string>
+    <string name="close">Tutup</string>
+</resources>
