@@ -26,21 +26,17 @@ class MainActivity : AppCompatActivity(), MyAsyncCallback {
         tvDesc.text = INPUT_STRING
     }
 
-    override fun onPostExecute(result: String) {
+    override fun onPostExecute(text: String) {
         tvStatus.text = getString(R.string.status_post)
-        tvDesc.text = result
+        tvDesc.text = text
     }
 
-    private class DemoAsync(val myListener: MyAsyncCallback): AsyncTask<String, Void, String>() {
+    private class DemoAsync(myListener: MyAsyncCallback): AsyncTask<String, Void, String>() {
         companion object {
-            private val LOG_ASYNC = "DemoAsync"
+            private const val LOG_ASYNC = "DemoAsync"
         }
 
-        private val myListener2: WeakReference<MyAsyncCallback>
-
-        init {
-            this.myListener2 = WeakReference(myListener)
-        }
+        private val myListener2: WeakReference<MyAsyncCallback> = WeakReference(myListener)
 
         override fun onPreExecute() {
             super.onPreExecute()
