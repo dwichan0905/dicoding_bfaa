@@ -109,9 +109,55 @@ class AlarmReceiver : BroadcastReceiver() {
         calendar.set(Calendar.SECOND, 0)
 
         val pendingIntent = PendingIntent.getBroadcast(context, ID_ONE_TIME, intent, 0)
+
+        // Atur alarm ke dalam sistem!
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
 
         Toast.makeText(context, "Alarm sekali telah berhasil diatur!", Toast.LENGTH_SHORT).show()
+    }
+
+    // untuk atur alarm sekali
+    fun setRepeatingAlarm(context: Context, type: String, time: String, message: String?) {
+        // cek takutnya tanggal/jam tidak sesuai format
+        if (isDateInvalid(time, TIME_FORMAT)) return
+
+        // ambil service milik system (Alarm Service)
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+        // set target untuk alarm ketika di trigger oleh sistem melalui alarm
+        // bisa ke activity secara langsung menggunakan intent berikut
+        val intent = Intent(context, AlarmReceiver::class.java)
+        intent.putExtra(EXTRA_MESSAGE, message)
+        intent.putExtra(EXTRA_TYPE, type)
+
+        //Log.e("ONE TIME", "$date $time")
+
+        // Split string menjadi array
+        val timeArray = time.split(":").toTypedArray()
+
+        // atur jadwal alarm
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(timeArray[0]))
+        calendar.set(Calendar.MINUTE, Integer.parseInt(timeArray[1]))
+        calendar.set(Calendar.SECOND, 0)
+
+        val pendingIntent = PendingIntent.getBroadcast(context, ID_ONE_TIME, intent, 0)
+
+        // Atur alarm ke dalam sistem!
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
+
+        Toast.makeText(context, "Alarm berulang telah berhasil diatur!", Toast.LENGTH_SHORT).show()
+    }
+
+    fun cancelAlarm(context: Context, type: String) {
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(context, AlarmReceiver::class.java)
+        val requestCode = if (type.equals(TYPE_ONE_TIME, ignoreCase = true)) ID_ONE_TIME else ID_REPEATING
+        val pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, 0)
+        pendingIntent.cancel()
+
+        alarmManager.cancel(pendingIntent)
+        Toast.makeText(context, "Alarm berulang berhasil dibatalkan!", Toast.LENGTH_SHORT).show()
     }
 
     private fun isDateInvalid(date: String, format: String): Boolean {
