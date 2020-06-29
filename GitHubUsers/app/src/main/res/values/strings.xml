@@ -1,0 +1,54 @@
+<resources>
+    <string name="github_api_token" translatable="false">9ab35e0d3f7c930c57a3473b8c1dd1168a867b54</string>
+
+    <string name="app_name">GitHub Users</string>
+    <string name="app_dev_name" translatable="false">Dwi Candra Permana</string>
+    <string name="app_dev_email" translatable="false">dwichan@outlook.com</string>
+
+    <string name="fullname" translatable="false">Dwi Candra Permana</string>
+    <string name="username" translatable="false">dwichan0905</string>
+    <string name="public_repos">repositori</string>
+    <string name="public_gists" translatable="false">gist</string>
+    <string name="progress_bar_message">Mohon menunggu, sedang memuat data…</string>
+    <string name="search_hint">Cari pengguna GitHub…</string>
+    <string name="about">Tentang</string>
+    <string name="search">Cari</string>
+    <string name="none">Tidak ada</string>
+    <string name="no_name">Tidak ada nama</string>
+    <string name="not_found_message">Pengguna tersebut tidak ditemukan. Coba cek lagi kueri pencariannya!</string>
+    <string name="no_follower_message">Pengguna ini tidak memiliki pengikut.</string>
+    <string name="no_following_message">Pengguna ini tidak mengikuti siapapun.</string>
+    <string name="error_message">Yaahh, terjadi kegagalan saat memuat data :(\nError:\n</string>
+    <string name="catch_user_data_error" translatable="false">Oops!\n</string>
+    <string name="language_settings">Pengaturan Bahasa</string>
+    <string name="desc_user_photo_profile">Foto Profil Pengguna</string>
+    <string name="error">Error</string>
+
+    <string name="tab_details">Rincian</string>
+    <string name="tab_follower">Pengikut</string>
+    <string name="tab_following">Mengikuti</string>
+
+    <string name="dot" translatable="false">·</string>
+    <string name="failed_load_message">Yaah, gagal memuat data :(</string>
+
+    <string name="detail_username">Nama pengguna</string>
+    <string name="detail_fullname">Nama Lengkap</string>
+    <string name="detail_company">Perusahaan</string>
+    <string name="detail_location">Lokasi</string>
+    <string name="detail_repos">Repositori</string>
+    <string name="detail_blog">Blog</string>
+    <string name="detail_bio">Bio</string>
+    <string name="detail_github_gist" translatable="false">GitHub Gist</string>
+    <string name="detail_created_at">Dibuat pada</string>
+
+    <string name="example_username" translatable="false">loremipsum</string>
+    <string name="example_fullname" translatable="false">Lorem Ipsum Dolor Sit Amet, S.Pd</string>
+    <string name="example_company" translatable="false">PT. Lorem Ipsum Tbk.</string>
+    <string name="example_location" translatable="false">Lorem City, Ipsum, Dolorsit Amet 44133</string>
+    <string name="example_repos" translatable="false">1234 repositori</string>
+    <string name="example_bio" translatable="false">Expectetor adispicing elit. Barem lprem dolor ipsuma, et ie.</string>
+    <string name="example_gist" translatable="false">122 gist</string>
+    <string name="example_creation_date" translatable="false">Senin, 13 Januari 2020 02:01:15</string>
+    <string name="example_blog" translatable="false">http://www.google.com</string>
+
+</resources>

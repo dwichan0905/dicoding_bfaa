@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GitHub Users</string>
+
+    <string name="public_repos">repository</string>
+    <string name="progress_bar_message">Please wait, loading datas…</string>
+    <string name="search_hint">Search GitHub user…</string>
+    <string name="about">About</string>
+    <string name="search">Find</string>
+    <string name="none">No</string>
+    <string name="not_found_message">Noo, the user isn\'t found! Please check your search queries again!</string>
+    <string name="error_message">Noo, error detected while load a data :(\n</string>
+    <string name="language_settings">Language Settings</string>
+    <string name="tab_follower">Followers</string>
+    <string name="tab_following">Following</string>
+    <string name="tab_details">Details</string>
+    <string name="no_name">No name</string>
+    <string name="failed_load_message">Oops, failed to load data :(</string>
+    <string name="no_follower_message">This user doesn\'t had a follower.</string>
+    <string name="no_following_message">This user isn\'t following anyone.</string>
+    <string name="desc_user_photo_profile">User Profile Photo</string>
+    <string name="error">Error</string>
+
+    <string name="detail_username">Username</string>
+    <string name="detail_fullname">Name</string>
+    <string name="detail_company">Company</string>
+    <string name="detail_location">Location</string>
+    <string name="detail_repos">Repository</string>
+    <string name="detail_blog">Blog</string>
+    <string name="detail_bio">Bio</string>
+    <string name="detail_created_at">Created at</string>
+
+</resources>
