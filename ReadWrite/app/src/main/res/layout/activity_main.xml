@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/editFile"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/header_linear"
+        android:gravity="top|start"
+        android:inputType="textMultiLine|textNoSuggestions"
+        android:background="@android:color/white"
+        android:padding="@dimen/tiny_margin" />
+
+    <LinearLayout
+        android:id="@+id/header_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|start"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnNew"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/tiny_margin"
+            android:text="@string/file_new" />
+
+        <Button
+            android:id="@+id/btnOpen"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/tiny_margin"
+            android:layout_marginStart="@dimen/tiny_margin"
+            android:text="@string/file_open" />
+
+        <Button
+            android:id="@+id/btnSave"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="64dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/tiny_margin"
+            android:layout_marginStart="@dimen/tiny_margin"
+            android:text="@string/file_save" />
+
+        <EditText
+            android:id="@+id/editTitle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/tiny_margin"
+            android:layout_marginStart="@dimen/tiny_margin"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:layout_weight="1"
+            android:inputType="textPersonName|textNoSuggestions"
+            android:padding="@dimen/tiny_margin"
+            android:hint="@string/title" />
+
+    </LinearLayout>
+
+</RelativeLayout>
