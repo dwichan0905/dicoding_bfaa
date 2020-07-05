@@ -72,10 +72,19 @@ class DataManagerService : Service(), CoroutineScope {
                         }
                     }
                 }
-                mahasiswaHelper.setTransactionSuccess()
-                isInsertSuccess = true
 
-                appPreference.firstRun = false
+                when {
+                    job.isCancelled -> {
+                        isInsertSuccess = false
+                        appPreference.firstRun = true
+                        sendMessage(CANCEL_MESSAGE)
+                    }
+                    else -> {
+                        mahasiswaHelper.setTransactionSuccess()
+                        isInsertSuccess = true
+                        appPreference.firstRun = false
+                    }
+                }
             } catch (e: Exception) {
                 Log.e(TAG, "doInBackground: Exception")
                 isInsertSuccess = false
