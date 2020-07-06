@@ -2,6 +2,7 @@ package id.dwichan.notes
 
 import android.content.ContentValues
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -10,9 +11,11 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import id.dwichan.notes.db.DatabaseContract
+import id.dwichan.notes.db.DatabaseContract.NoteColumns.Companion.CONTENT_URI
 import id.dwichan.notes.db.DatabaseContract.NoteColumns.Companion.DATE
 import id.dwichan.notes.db.NoteHelper
 import id.dwichan.notes.entity.Note
+import id.dwichan.notes.helper.MappingHelper
 import kotlinx.android.synthetic.main.activity_note_add_update.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -22,7 +25,8 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
     private var isEdit = false
     private var note: Note? = null
     private var position: Int = 0
-    private lateinit var noteHelper: NoteHelper
+    //private lateinit var noteHelper: NoteHelper <-- diganti
+    private lateinit var urlWithId: Uri
 
     companion object {
         const val EXTRA_NOTE = "extra_note"
@@ -40,8 +44,9 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note_add_update)
 
-        noteHelper = NoteHelper.getInstance(applicationContext)
-        noteHelper.open()
+        // diganti untuk menggunakan content resolver
+//        noteHelper = NoteHelper.getInstance(applicationContext)
+//        noteHelper.open()
 
         note = intent.getParcelableExtra(EXTRA_NOTE)
         if (note != null) {
@@ -53,6 +58,14 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
         val btnTitle: String
 
         if (isEdit) {
+            // Uri yang didapatkan disini akan digunakan untuk ambil data dari provdier
+            // content://id.dwichan.notes/note/id
+            urlWithId = Uri.parse(CONTENT_URI.toString() + "/" + note?.id)
+            val cursor = contentResolver.query(urlWithId, null, null, null, null)
+            if (cursor != null) {
+                note = MappingHelper.mapCursorToObject(cursor)
+                cursor.close()
+            }
             actionBarTitle = "Ubah"
             btnTitle = "Update"
             note?.let {
@@ -93,21 +106,21 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
             values.put(DatabaseContract.NoteColumns.DESCRIPTION, description)
 
             if (isEdit) {
-                val result = noteHelper.update(note?.id.toString(), values).toLong()
-                if (result > 0) {
-                    setResult(RESULT_UPDATE, intent)
-                    finish()
-                } else Toast.makeText(this@NoteAddUpdateActivity, "Gagal mengubah data", Toast.LENGTH_SHORT).show()
+                /* Diganti menggunakan content resolver */
+                // val result = noteHelper.update(note?.id.toString(), values).toLong()
+                contentResolver.update(urlWithId, values, null, null)
+                Toast.makeText(this@NoteAddUpdateActivity, "1 item data ditambah", Toast.LENGTH_SHORT).show()
+                setResult(RESULT_UPDATE, intent)
+                finish()
             } else {
-                note?.date = getCurrentDate()
+                //note?.date = getCurrentDate()
                 values.put(DATE, getCurrentDate())
-                val result = noteHelper.insert(values)
-
-                if (result > 0) {
-                    note?.id = result.toInt()
-                    setResult(RESULT_ADD, intent)
-                    finish()
-                } else Toast.makeText(this@NoteAddUpdateActivity, "Gagal menambah data", Toast.LENGTH_SHORT).show()
+                /* Diganti menggunakan Content Resolver */
+                // val result = noteHelper.insert(values)
+                contentResolver.insert(CONTENT_URI, values)
+                Toast.makeText(this@NoteAddUpdateActivity, "1 item data ditambah", Toast.LENGTH_SHORT).show()
+                setResult(RESULT_ADD, intent)
+                finish()
             }
         }
     }
@@ -155,13 +168,17 @@ class NoteAddUpdateActivity : AppCompatActivity(), View.OnClickListener {
             .setCancelable(false)
             .setPositiveButton("Ya") { dialog, id ->
                 if (isDialogClose) finish() else {
+                    /* Diganti menggunakan content resolver
                     val result = noteHelper.deleteById(note?.id.toString()).toLong()
                     if (result > 0) {
                         val intent = Intent()
                         intent.putExtra(EXTRA_POSITION, position)
                         setResult(RESULT_DELETE, intent)
                         finish()
-                    } else Toast.makeText(this@NoteAddUpdateActivity, "Gagal menghapus data!", Toast.LENGTH_SHORT).show()
+                    } else Toast.makeText(this@NoteAddUpdateActivity, "Gagal menghapus data!", Toast.LENGTH_SHORT).show()*/
+                    contentResolver.delete(urlWithId, null, null)
+                    Toast.makeText(this@NoteAddUpdateActivity, "1 item berhasil dihapus!", Toast.LENGTH_SHORT).show()
+                    finish()
                 }
             }
             .setNegativeButton("Tidak") { dialog, id -> dialog.cancel() }
