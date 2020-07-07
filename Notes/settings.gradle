@@ -1,2 +1,3 @@
+include ':consumernotes'
 include ':app'
 rootProject.name = "Notes"
