@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "151901358578",
+    "firebase_url": "https://fir-cloud-messaging-74e1b.firebaseio.com",
+    "project_id": "fir-cloud-messaging-74e1b",
+    "storage_bucket": "fir-cloud-messaging-74e1b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151901358578:android:af92f5eb657b17660f836b",
+        "android_client_info": {
+          "package_name": "id.dwichan.firebasecloudmessaging"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "151901358578-hfbvj5ub2stjm071lmc8kqm8cjba99d0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1UB7WoG2QBjWsXubyG3HRpwpfaYHUxD8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "151901358578-hfbvj5ub2stjm071lmc8kqm8cjba99d0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
