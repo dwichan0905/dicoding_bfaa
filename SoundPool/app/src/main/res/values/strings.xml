@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SoundPool</string>
+    <string name="test_soundpool">Test SoundPool!</string>
+    <string name="play_sound">Play Sound</string>
+</resources>
