@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="id.dwichan.githubusers">
+
+    <permission
+        android:name="id.dwichan.githubusers.READ_DATABASE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="id.dwichan.githubusers.WRITE_DATABASE"
+        android:protectionLevel="normal" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_octocat"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <service
+            android:name=".widgets.favorite.FavoriteWidgetService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <receiver android:name=".widgets.favorite.FavoriteWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/favorite_widget_info" />
+        </receiver>
+
+        <provider
+            android:name=".provider.FavoriteProvider"
+            android:authorities="id.dwichan.githubusers"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="id.dwichan.githubusers.READ_DATABASE"
+            android:writePermission="id.dwichan.githubusers.WRITE_DATABASE" />
+
+        <receiver
+            android:name=".alarm.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".FavoriteActivity" />
+        <activity android:name=".AboutActivity" />
+        <activity android:name=".UserDetailActivity" />
+        <activity android:name=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

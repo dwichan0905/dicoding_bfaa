@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name" translatable="false">GitHub Consumer</string>
+    <string name="app_dev_name" translatable="false">Dwi Candra Permana</string>
+    <string name="app_dev_email" translatable="false">dwichan@outlook.com</string>
+
+    <string name="fullname" translatable="false">Dwi Candra Permana</string>
+    <string name="username" translatable="false">dwichan0905</string>
+    <string name="public_repos">repositori</string>
+    <string name="public_gists" translatable="false">gist</string>
+    <string name="progress_bar_message">Mohon menunggu, sedang memuat data…</string>
+    <string name="search_hint">Cari user GitHub…</string>
+    <string name="about">Tentang</string>
+    <string name="search">Cari</string>
+    <string name="favorite">User Favoritmu</string>
+    <string name="settings">Pengaturan</string>
+    <string name="none">Tidak ada</string>
+    <string name="no_name">Tidak ada nama</string>
+    <string name="not_found_message">Pengguna yang kamu cari tidak ditemukan. Coba cek lagi kueri pencariannya!</string>
+    <string name="no_follower_message">Pengguna ini tidak memiliki pengikut.</string>
+    <string name="no_following_message">Pengguna ini tidak mengikuti siapapun.</string>
+    <string name="no_favorite_message">Sejauh ini, kamu belum menambah satupun user favorit.</string>
+    <string name="error_message">Yaahh, terjadi kesalahan :(\n</string>
+    <string name="catch_user_data_error" translatable="false">Oops!\n</string>
+    <string name="language_settings">Pengaturan Bahasa</string>
+    <string name="desc_user_photo_profile">Foto Profil Pengguna</string>
+    <string name="error">Error</string>
+
+    <string name="tab_details">Rincian</string>
+    <string name="tab_follower">Pengikut</string>
+    <string name="tab_following">Mengikuti</string>
+
+    <string name="dot" translatable="false">·</string>
+    <string name="failed_load_message">Yaah, gagal memuat data :(</string>
+
+    <string name="detail_username">Nama pengguna</string>
+    <string name="detail_fullname">Nama Lengkap</string>
+    <string name="detail_company">Perusahaan</string>
+    <string name="detail_location">Lokasi</string>
+    <string name="detail_repos">Repositori</string>
+    <string name="detail_blog">Blog</string>
+    <string name="detail_bio">Bio</string>
+    <string name="detail_github_gist" translatable="false">GitHub Gist</string>
+    <string name="detail_created_at">Dibuat pada</string>
+
+    <string name="example_username" translatable="false">loremipsum</string>
+    <string name="example_fullname" translatable="false">Lorem Ipsum Dolor Sit Amet, S.Pd</string>
+    <string name="example_company" translatable="false">PT. Lorem Ipsum Tbk.</string>
+    <string name="example_location" translatable="false">Lorem City, Ipsum, Dolorsit Amet 44133</string>
+    <string name="example_repos" translatable="false">1234 repositori</string>
+    <string name="example_bio" translatable="false">Expectetor adispicing elit. Barem lprem dolor ipsuma, et ie.</string>
+    <string name="example_gist" translatable="false">122 gist</string>
+    <string name="example_creation_date" translatable="false">Senin, 13 Januari 2020 02:01:15</string>
+    <string name="example_blog" translatable="false">http://www.google.com</string>
+
+    <string name="favorite_removed">telah dihapus dari daftar favorit!</string>
+    <string name="favorite_added">telah ditambahkan ke dalam daftar favorit!</string>
+
+    <string name="reminder">Pengingat</string>
+    <string name="remind_me">Ingatkan saya pada pukul 9 pagi</string>
+    <string name="dont_remind_me">Jangan ingatkan saya pada pukul 9 pagi nanti</string>
+    <string name="language_settings_hint">Buka pengaturan untuk mengubah bahasa sistem</string>
+    <string name="alarm_canceled">Pengingat telah dibatalkan!</string>
+    <string name="alarm_activated">Pengingat akan dijalankan setiap pukul 9 pagi</string>
+    <string name="reminder_message">Udah jam 9 pagi nih, ayo cek GitHub Users lagi!</string>
+</resources>

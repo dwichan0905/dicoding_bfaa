@@ -1,0 +1,17 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:icon="@drawable/ic_baseline_notifications_active_24"
+        android:key="reminder"
+        android:summaryOff="@string/dont_remind_me"
+        android:summaryOn="@string/remind_me"
+        android:title="@string/reminder" />
+
+    <Preference
+        android:icon="@drawable/ic_baseline_g_translate_24"
+        android:key="language"
+        android:summary="@string/language_settings_hint"
+        android:title="@string/language_settings" />
+
+</PreferenceScreen>
