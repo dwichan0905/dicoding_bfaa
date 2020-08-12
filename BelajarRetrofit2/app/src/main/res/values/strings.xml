@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Belajar Retrofit2</string>
+    <string name="sample_contact_name">Dwi Candra Permana</string>
+    <string name="example_phone_number">082121824775</string>
+    <string name="add_contact">Tambah Kontak</string>
+    <string name="contact_name">Nama Kontak</string>
+    <string name="contact_num">Nomor Telepon</string>
+    <string name="edit_contact">Ubah Kontak</string>
 </resources>
