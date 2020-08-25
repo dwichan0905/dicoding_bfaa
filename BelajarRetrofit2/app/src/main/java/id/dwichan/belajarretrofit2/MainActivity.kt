@@ -2,33 +2,38 @@ package id.dwichan.belajarretrofit2
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
-import id.dwichan.belajarretrofit2.adapter.KontakAdapter
+import id.dwichan.belajarretrofit2.adapter.ContactAdapter
 import id.dwichan.belajarretrofit2.api.ApiClient
 import id.dwichan.belajarretrofit2.api.ApiInterface
-import id.dwichan.belajarretrofit2.model.Kontak
-import id.dwichan.belajarretrofit2.requests.GetKontak
+import id.dwichan.belajarretrofit2.model.Contact
+import id.dwichan.belajarretrofit2.requests.GetContact
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
-    private val mKontakAdapter = KontakAdapter()
+    private val mKontakAdapter = ContactAdapter()
     private lateinit var apiInterface: ApiInterface
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        progressBar.visibility = View.VISIBLE
+        tvError.visibility = View.GONE
+
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
-        supportActionBar?.title = resources.getString(R.string.app_name)
+        supportActionBar?.title = ""
 
         fabAddContact.setOnClickListener(this)
 
@@ -39,28 +44,72 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         apiInterface = apiClient.getClient()!!.create(ApiInterface::class.java)
 
         refresh()
+
+        pullToRefresh.setOnRefreshListener {
+            val contactCall: Call<GetContact> = apiInterface.getKontak()
+            contactCall.enqueue(object : Callback<GetContact> {
+                override fun onFailure(call: Call<GetContact>, t: Throwable) {
+                    Log.e("Retrofit Error", t.message!!.toString())
+                    tvError.visibility = View.VISIBLE
+                    tvError.text = t.localizedMessage!!
+                    pullToRefresh.isRefreshing = false
+                }
+
+                override fun onResponse(call: Call<GetContact>, response: Response<GetContact>) {
+                    val contactList: ArrayList<Contact> = response.body()!!.listContact
+                    Log.d("Retrofit Get", "Jumlah Kontak: " + contactList.size.toString())
+                    mKontakAdapter.setData(contactList)
+                    tvError.visibility = View.GONE
+                    pullToRefresh.isRefreshing = false
+                }
+            })
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menuAbout) {
+            val i = Intent(this, AboutActivity::class.java)
+            startActivity(i)
+        }
+        return true
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.fabAddContact -> {
                 val i = Intent(this, InsertUpdateActivity::class.java)
-                startActivityForResult(i, InsertUpdateActivity.RESULT_SAVE)
+                startActivityForResult(i, InsertUpdateActivity.REQUEST_SAVE)
             }
         }
     }
 
     private fun refresh() {
-        val kontakCall: Call<GetKontak> = apiInterface.getKontak()
-        kontakCall.enqueue(object: Callback<GetKontak> {
-            override fun onFailure(call: Call<GetKontak>, t: Throwable) {
+        val contactCall: Call<GetContact> = apiInterface.getKontak()
+        contactCall.enqueue(object : Callback<GetContact> {
+            override fun onFailure(call: Call<GetContact>, t: Throwable) {
                 Log.e("Retrofit Error", t.message!!.toString())
+                tvError.visibility = View.VISIBLE
+                progressBar.visibility = View.GONE
+                tvError.text = t.localizedMessage!!
             }
 
-            override fun onResponse(call: Call<GetKontak>, response: Response<GetKontak>) {
-                val kontakList: ArrayList<Kontak> = response.body()!!.listKontak
-                Log.d("Retrofit Get", "Jumlah Kontak: " + kontakList.size.toString())
-                mKontakAdapter.setData(kontakList)
+            override fun onResponse(call: Call<GetContact>, response: Response<GetContact>) {
+                progressBar.visibility = View.GONE
+                val contactList: ArrayList<Contact> = response.body()!!.listContact
+                Log.d("Retrofit Get", "Jumlah Kontak: " + contactList.size.toString())
+                if (contactList.size > 0) {
+                    mKontakAdapter.setData(contactList)
+                    tvError.visibility = View.GONE
+                } else {
+                    mKontakAdapter.setData(ArrayList())
+                    tvError.visibility = View.VISIBLE
+                    tvError.text = getString(R.string.no_data)
+                }
             }
         })
     }
